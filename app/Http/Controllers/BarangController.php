@@ -19,7 +19,8 @@ class BarangController extends Controller
 
     public function index()
     {
-        $brg = Barang::all();
+        // $brg = Barang::all();
+        $brg = Barang::latest()->paginate(5);
         return view('barang.index', compact('brg'));
     }
 
@@ -45,7 +46,7 @@ class BarangController extends Controller
             'nama_brg' => 'required',
             'qty' => 'required|integer',
             'harga' => 'required|integer'
-            ]);
+        ]);
         
         $kode_brg = IdGenerator::generate(['table' => 'barangs', 'length' => 10, 'prefix' =>'BRG20-', 'field' => 'kode_brg']);
         
@@ -78,7 +79,8 @@ class BarangController extends Controller
      */
     public function edit($id)
     {
-        //
+        $brg = Barang::find($id);
+        return view('barang.edit', compact('brg'));
     }
 
     /**
@@ -90,7 +92,15 @@ class BarangController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'nama_brg' => 'required',
+            'qty' => 'required|integer',
+            'harga' => 'required|integer'
+        ]);
+
+        $brg = Barang::find($id);
+        $brg->update($request->all());
+        return redirect()->route('index')->with('success', 'Data barang telah diupdate!');
     }
 
     /**
@@ -101,6 +111,8 @@ class BarangController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $brg = Barang::find($id);
+        $brg->delete();
+        return redirect()->route('index')->with('success', 'Data barang telah dihapus!');
     }
 }

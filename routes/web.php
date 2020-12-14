@@ -24,6 +24,9 @@ Route::group(['middleware' => ['auth']], function () {
    Route::get('/barang', [BarangController::class, 'index'])->name('index');
    Route::get('/barang/create', [BarangController::class, 'create'])->name('create');
    Route::post('/barang/store', [BarangController::class, 'store'])->name('store');
+   Route::get('/barang/{id}/edit', [BarangController::class, 'edit'])->name('edit');
+   Route::post('/barang/{id}/update', [BarangController::class, 'update'])->name('update');
+   Route::get('/barang/{id}/destroy', [BarangController::class, 'destroy'])->name('destroy');
 });
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
