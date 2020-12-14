@@ -22,6 +22,8 @@ Auth::routes();
 
 Route::group(['middleware' => ['auth']], function () {
    Route::get('/barang', [BarangController::class, 'index'])->name('index');
+   Route::get('/barang/create', [BarangController::class, 'create'])->name('create');
+   Route::post('/barang/store', [BarangController::class, 'store'])->name('store');
 });
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

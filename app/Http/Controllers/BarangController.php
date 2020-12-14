@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Barang;
 use Illuminate\Http\Request;
+use Haruncpi\LaravelIdGenerator\IdGenerator;
 
 class BarangController extends Controller
 {
@@ -12,6 +13,10 @@ class BarangController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public $nama_brg;
+    public $qty;
+    public $harga;
+
     public function index()
     {
         $brg = Barang::all();
@@ -25,7 +30,7 @@ class BarangController extends Controller
      */
     public function create()
     {
-        //
+        return view('barang.create');
     }
 
     /**
@@ -36,7 +41,22 @@ class BarangController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'nama_brg' => 'required',
+            'qty' => 'required|integer',
+            'harga' => 'required|integer'
+            ]);
+        
+        $kode_brg = IdGenerator::generate(['table' => 'barangs', 'length' => 10, 'prefix' =>'BRG20-', 'field' => 'kode_brg']);
+        
+        // Barang::create($request->all());
+        Barang::create([
+            'kode_brg' => $kode_brg,
+            'nama_brg' => $request->nama_brg,
+            'qty' => $request->qty,
+            'harga' => $request->harga
+        ]);
+        return redirect()->route('index')->with('success', 'Data barang telah ditambahkan');
     }
 
     /**

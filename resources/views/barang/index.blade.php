@@ -14,15 +14,15 @@
             <div class="float-right">
                 {{-- <a href="{{ route('print_pdf') }}" target="_blank" class="btn btn-danger">Print</a> --}}
                 {{-- <a href="{{ route('create') }}" class="btn btn-primary">Add Data</a> --}}
-                <a href="#" class="btn btn-primary">Tambah Barang</a>
+                <a href="{{ route('create') }}" class="btn btn-primary"><i class="fas fa-plus-square"></i>&nbsp;&nbsp;Add Barang</a>
             </div>
         </div>
     </div>
-    {{-- @if ($message = Session::get('success'))
+    @if ($message = Session::get('success'))
         <div class="alert alert-success">
             <p>{{ $message }}</p>
         </div>
-    @endif --}}
+    @endif
     <table class="table table-bordered mb-3" cellpadding=3>
         <thead>
             <tr>
@@ -35,24 +35,26 @@
             </tr>
         </thead>
         <tbody>
-            {{-- @foreach ($mhs as $mahasiswa) --}}
+            <?php $no = 0; ?>
+            @foreach ($brg as $barang)
+            <?php $no++; ?>
             <tr>
-                <td>1</td>
-                <td>BRG-2001</td>
-                <td>Sunlight</td>
-                <td>20</td>
-                <td>1500</td>
+                <td class="text-center">{{ $no }}</td>
+                <td>{{ $barang->kode_brg }}</td>
+                <td>{{ $barang->nama_brg }}</td>
+                <td>{{ $barang->qty }}</td>
+                <td>{{ $barang->harga }}</td>
                 <td>
-                    {{-- <form action="{{ route('destroy', $mahasiswa->id) }}" method="post">
-                        <a href="{{ route('show', $mahasiswa->id) }}" class="btn btn-info">Show</a>
-                        <a href="{{ route('edit', $mahasiswa->id) }}" class="btn btn-success" 
+                    {{-- <form action="{{ route('destroy', $mahasiswa->id) }}" method="post"> --}}
+                        {{-- <a href="{{ route('show', $mahasiswa->id) }}" class="btn btn-info">Show</a> --}}
+                        {{-- <a href="{{ route('edit', $mahasiswa->id) }}" class="btn btn-success" 
                             role="button">Edit</a>
                         <a href="{{ route('destroy', $mahasiswa->id) }}" class="btn btn-danger" role="button" 
-                            onclick="return confirm('Yakin akan menghapus {{ $mahasiswa->nama }}')">Delete</a>
-                    </form> --}}
+                            onclick="return confirm('Yakin akan menghapus {{ $mahasiswa->nama }}')">Delete</a> --}}
+                    {{-- </form> --}}
                 </td>
             </tr>
-            {{-- @endforeach --}}
+            @endforeach
         </tbody>
     </table>
     <div>
