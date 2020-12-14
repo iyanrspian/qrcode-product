@@ -13,19 +13,19 @@
         <div class="form-group row">
             <label class="col-sm-1 col-form-label">Nama</label>
             <div class="col-sm">
-                <input type="text" class="form-control form-control" name="nama_brg" id="" placeholder="Misal: 'Sunlight'">
+                <input type="text" class="form-control" name="nama_brg" id="" placeholder="Misal: 'Sunlight'">
             </div>
         </div>
         <div class="form-group row">
             <label class="col-sm-1 col-form-label">Qty</label>
             <div class="col-sm">
-                <input type="text" class="form-control form-control" name="qty" id="" placeholder="Misal: '3'">
+                <input type="text" class="form-control" name="qty" id="" placeholder="Misal: '3'">
             </div>
         </div>
         <div class="form-group row">
             <label class="col-sm-1 col-form-label">Harga</label>
             <div class="col-sm">
-                <input type="text" class="form-control form-control" name="harga" id="" placeholder="Misal: '2500'">
+                <input type="text" class="form-control" name="harga" id="" placeholder="Misal: '2500'">
             </div>
         </div>
         <div class="float-right">

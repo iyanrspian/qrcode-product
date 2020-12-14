@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Barang;
 use Illuminate\Http\Request;
 use Haruncpi\LaravelIdGenerator\IdGenerator;
+use Barryvdh\DomPDF\Facade as PDF;
 
 class BarangController extends Controller
 {
@@ -13,9 +14,32 @@ class BarangController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public $nama_brg;
-    public $qty;
-    public $harga;
+
+    public function barcode($id)
+    {
+        $brg = Barang::find($id);
+        return view('barang.barcode', compact('brg'));
+    }
+
+    public function qrcode($id)
+    {
+        $brg = Barang::find($id);
+        return view('barang.qrcode', compact('brg'));
+    }
+
+    public function print_barcode($id)
+    {
+        $brg = Barang::find($id);
+        $pdf = PDF::loadview('barang.print_barcode', ['brg'=>$brg]);
+        return $pdf->stream();
+    }
+    
+    public function print_qrcode($id)
+    {
+        $brg = Barang::find($id);
+        $pdf = PDF::loadview('barang.print_qrcode', ['brg'=>$brg]);
+        return $pdf->stream();
+    }
 
     public function index()
     {

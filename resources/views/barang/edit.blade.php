@@ -13,19 +13,19 @@
         <div class="form-group row">
             <label class="col-sm-1 col-form-label">Nama</label>
             <div class="col-sm">
-                <input type="text" class="form-control form-control" name="nama_brg" id="" value="{{ $brg->nama_brg }}">
+                <input type="text" class="form-control" name="nama_brg" id="" value="{{ $brg->nama_brg }}">
             </div>
         </div>
         <div class="form-group row">
             <label class="col-sm-1 col-form-label">Qty</label>
             <div class="col-sm">
-                <input type="text" class="form-control form-control" name="qty" id="" value="{{ $brg->qty }}">
+                <input type="text" class="form-control" name="qty" id="" value="{{ $brg->qty }}">
             </div>
         </div>
         <div class="form-group row">
             <label class="col-sm-1 col-form-label">Harga</label>
             <div class="col-sm">
-                <input type="text" class="form-control form-control" name="harga" id="" value="{{ $brg->harga }}">
+                <input type="text" class="form-control" name="harga" id="" value="{{ $brg->harga }}">
             </div>
         </div>
         <div class="float-right">

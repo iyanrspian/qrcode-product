@@ -27,6 +27,10 @@ Route::group(['middleware' => ['auth']], function () {
    Route::get('/barang/{id}/edit', [BarangController::class, 'edit'])->name('edit');
    Route::post('/barang/{id}/update', [BarangController::class, 'update'])->name('update');
    Route::get('/barang/{id}/destroy', [BarangController::class, 'destroy'])->name('destroy');
+   Route::get('/barang/{id}/barcode', [BarangController::class, 'barcode'])->name('barcode');
+   Route::get('/barang/{id}/qrcode', [BarangController::class, 'qrcode'])->name('qrcode');
+   Route::get('/barang/{id}/print_barcode', [BarangController::class, 'print_barcode'])->name('print_barcode');
+   Route::get('/barang/{id}/print_qrcode', [BarangController::class, 'print_qrcode'])->name('print_qrcode');
 });
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
