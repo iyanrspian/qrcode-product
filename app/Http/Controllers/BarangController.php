@@ -3,9 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\Barang;
+use App\Exports\BrgExport;
+use App\Imports\BrgImport;
 use Illuminate\Http\Request;
-use Haruncpi\LaravelIdGenerator\IdGenerator;
 use Barryvdh\DomPDF\Facade as PDF;
+use Maatwebsite\Excel\Facades\Excel;
+use Haruncpi\LaravelIdGenerator\IdGenerator;
 
 class BarangController extends Controller
 {
@@ -15,6 +18,20 @@ class BarangController extends Controller
      * @return \Illuminate\Http\Response
      */
 
+    public function brgexport()
+    {
+        return Excel::download(new BrgExport, 'data-barang.xlsx');
+    }
+
+    public function brgimport(Request $request)
+    {
+        $file = $request->file('file');
+        $filename = $file->getClientOriginalName();
+        $file->move('databrg', $filename);
+        
+        Excel::import(new BrgImport, public_path('/databrg/'.$filename));
+        return redirect()->route('index')->with('success', 'Data barang telah diimport!');
+    }
     public function barcode($id)
     {
         $brg = Barang::find($id);
